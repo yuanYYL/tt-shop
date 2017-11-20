@@ -1,5 +1,7 @@
 package com.yuan.ttshop.service;
 
+import com.yuan.ttshop.dto.Page;
+import com.yuan.ttshop.dto.Result;
 import com.yuan.ttshop.pojo.po.TbItem;
 
 /**
@@ -10,4 +12,6 @@ import com.yuan.ttshop.pojo.po.TbItem;
  */
 public interface ItemService {
     TbItem getById(Long itemId);
+
+    Result<TbItem> findByPage(Page page);
 }

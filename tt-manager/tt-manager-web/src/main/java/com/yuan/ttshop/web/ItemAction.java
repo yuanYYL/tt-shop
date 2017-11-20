@@ -1,5 +1,7 @@
 package com.yuan.ttshop.web;
 
+import com.yuan.ttshop.dto.Page;
+import com.yuan.ttshop.dto.Result;
 import com.yuan.ttshop.pojo.po.TbItem;
 import com.yuan.ttshop.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,11 @@ public class ItemAction {
     @RequestMapping(value = "/item/{itemId}", method = RequestMethod.GET)
     public TbItem getById(@PathVariable("itemId") Long itemId) {
         return itemService.getById(itemId);
-
+    }
+    @ResponseBody
+    @RequestMapping("/items")
+    public Result<TbItem> findByPage(Page page){
+        Result<TbItem> result = itemService.findByPage(page);
+        return result;
     }
 }
