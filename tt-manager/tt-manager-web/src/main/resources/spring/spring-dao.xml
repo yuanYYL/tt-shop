@@ -25,6 +25,7 @@
             <!--注入数据源-->
             <property name="dataSource" ref="dataSource"/>
             <!--注入mybatis主配置文件-->
+
             <property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
             <!--自动扫描dao中的所有Mapper.xml文件-->
             <property name="mapperLocations" value="classpath:com/yuan/ttshop/dao/*Mapper.xml"/>

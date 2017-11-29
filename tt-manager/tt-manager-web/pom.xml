@@ -43,6 +43,7 @@
             <artifactId>json</artifactId>
             <version>${json.version}</version>
         </dependency>
+
     </dependencies>
     <build>
         <finalName>tt-manager-web</finalName>
@@ -53,6 +54,8 @@
                 <configuration>
                     <port>8080</port>
                     <path>/ttshop</path>
+                    <!--解决get请求乱码问题-->
+                    <uriEncoding>UTF-8</uriEncoding>
                 </configuration>
             </plugin>
         </plugins>

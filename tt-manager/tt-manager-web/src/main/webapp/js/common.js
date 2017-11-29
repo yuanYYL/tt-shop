@@ -1,33 +1,32 @@
 
 var ttshop = {
-
-    //响应导航树上的动作
-    registerMenuEvent: function () {
+    onTreeClick:function () {
+        //约定大于配置：定义DOM对象的时候，一般定义为tree
+        //定义的是一个jquery对象的话，一般定义为$tree
+        var $tree = $('#menu .easyui-tree');
+        // console.log(this);
         var _this = this;
-        $('#menu .easyui-tree').tree({
+        $tree.tree({
             onClick: function (node) {
-                var href = node.attributes.href;
-                _this.addTab(node.text,href);
+                if ($('#tab').tabs('exists', node.text)) {
+                    //能进入这里说明该选项卡存在
+                    $('#tab').tabs('select', node.text);
+                } else {
+                    // console.log(this);
+                    _this.addTab(node.text, node.attributes.href);
+                }
             }
         });
     },
-    //添加选项卡
-    addTab:function(title,href){
-        if($('#tab').tabs('exists',title)){
-            $('#tab').tabs('select',title)
-        }else{
-            $('#tab').tabs('add', {
-                title: title,
-                href: href,
-                closable: true
-            });
-        }
+    addTab:function (text,href) {
+        //新增选项卡
+        $('#tab').tabs('add', {
+            title: text,
+            href: href,
+            closable: true
+        });
     },
-    //关闭选项卡
-    closeTab:function(title){
+    closeTab:function () {
         $('#tab').tabs('close',title);
     }
 };
-
-
-

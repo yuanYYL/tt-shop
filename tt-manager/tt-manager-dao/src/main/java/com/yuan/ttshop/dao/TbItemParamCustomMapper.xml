@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yuan.ttshop.dao.TbItemParamCustomMapper">
+
+    <sql id="Base_Column_List">
+        p.id,c.`name` as itemCatName,p.param_data as paramData,p.created,p.updated
+    </sql>
+
+ <select id="findParamByPage" resultType="com.yuan.ttshop.pojo.vo.TbItemParamCustom">
+  select
+    <include refid="Base_Column_List"></include>
+    from tb_item_param p
+    LEFT JOIN tb_item_cat c
+    on p.item_cat_id=c.id
+     <choose>
+         <when test="order !=null and order.sort !=null and order.order !=null">
+             <foreach collection="order.orderParams" item="item" open="order by" close=" " separator=",">
+                 p.${item}
+             </foreach>
+         </when>
+         <otherwise>
+             order by p.id DESC
+         </otherwise>
+     </choose>
+
+     limit #{page.offset},#{page.rows}
+</select>
+
+    <select id="findCount" resultType="_long">
+        select count(1) from tb_item_param
+    </select>
+</mapper>
