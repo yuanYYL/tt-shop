@@ -63,7 +63,12 @@
 
     //初始化富文本编辑器
     UE.delEditor("container")
-    var ue = UE.getEditor("container");
+    var ue = UE.getEditor('container', {
+        initialFrameWidth: 1000,
+        initialFrameHeight: 300,
+        serverUrl: 'file/upload'
+    });
+
 
     $('#cid').combotree({
         //检索远程数据的URL地址
@@ -159,9 +164,10 @@
             //表单提交成功后触发，而非item处理成功后触发
             success: function (data) {
                 if (data > 0) {
-                    $.messager.alert('消息', '添加成功！！', 'info');
-                    ttshop.addTab('查询商品', 'item-list');
                     ttshop.closeTab('新增商品');
+                    ttshop.closeTab('查询商品');
+                    ttshop.addTab('查询商品', 'item-list');
+                    $.messager.alert('消息', '添加成功！！', 'info');
                 }
             }
         })

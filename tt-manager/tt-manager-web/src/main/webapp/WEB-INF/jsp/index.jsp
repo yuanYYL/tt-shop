@@ -52,35 +52,50 @@
 <%--添加数据转换moment--%>
 <script src="js/moment/moment-with-locales.js"></script>
 <%--自己写的js--%>
-<script src="js/common.js"></script>
+<script src="js/commom/common.js"></script>
 <%--添加富文本编辑器的相关文件--%>
 <script src="js/ueditor/ueditor.config.js"></script>
 <script src="js/ueditor/ueditor.all.js"></script>
 <script>
     moment.locale("zh_cn");
 </script>
+
+
 <script>
-    ttshop.registerMenuEvent();
-//    $(function () {
-//        //约定大于配置：定义DOM对象的时候，一般定义为tree
-//        //定义的是一个jquery对象的话，一般定义为$tree
-//        var $tree = $('#menu .easyui-tree');
-//        $tree.tree({
-//            onClick: function (node) {
-//                if($('#tabs').tabs('exists',node.text)){
-//                    //选项卡存在
-//                    $('#tabs').tabs('select',node.text)
-//                }else{
-//                    //新增选项卡
-//                    $('#tabs').tabs('add', {
-//                        title: node.text,
-//                        href: node.attributes.href,
-//                        closable: true
-//                    });
-//                }
-//            }
-//        });
-//    });
+   ttshop.registerMenuEvent();
+
+    UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+    UE.Editor.prototype.getActionUrl = function(action) {
+        if (action == 'uploadimage') {
+            return 'http://localhost:8080/ttshop/file/upload';
+        }else {
+            return this._bkGetActionUrl.call(this, action);
+        }
+    }
 </script>
+
+<%--<script>--%>
+
+<%--//    $(function () {--%>
+<%--//        //约定大于配置：定义DOM对象的时候，一般定义为tree--%>
+<%--//        //定义的是一个jquery对象的话，一般定义为$tree--%>
+<%--//        var $tree = $('#menu .easyui-tree');--%>
+<%--//        $tree.tree({--%>
+<%--//            onClick: function (node) {--%>
+<%--//                if($('#tabs').tabs('exists',node.text)){--%>
+<%--//                    //选项卡存在--%>
+<%--//                    $('#tabs').tabs('select',node.text)--%>
+<%--//                }else{--%>
+<%--//                    //新增选项卡--%>
+<%--//                    $('#tabs').tabs('add', {--%>
+<%--//                        title: node.text,--%>
+<%--//                        href: node.attributes.href,--%>
+<%--//                        closable: true--%>
+<%--//                    });--%>
+<%--//                }--%>
+<%--//            }--%>
+<%--//        });--%>
+<%--//    });--%>
+<%--</script>--%>
 </body>
 </html>

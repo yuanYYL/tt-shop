@@ -144,6 +144,7 @@
     }
 
     function add() {
+        debugger;
         ttshop.closeTab("新增商品");
         ttshop.addTab("新增商品","item-add");
     }

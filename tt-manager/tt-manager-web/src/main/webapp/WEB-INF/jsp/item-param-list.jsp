@@ -53,7 +53,7 @@
         });
     });
     function add(){
-        ttshop.closeTab("新增规格参数");
+        ttshop.closeTab('新增规格参数');
         ttshop.addTab('新增规格参数', 'item-param-add');
     }
     function edit(){

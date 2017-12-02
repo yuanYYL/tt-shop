@@ -74,7 +74,11 @@
 
     //初始化富文本编辑器
     UE.delEditor("container")
-    var ue = UE.getEditor("container");
+    var ue = UE.getEditor('container', {
+        initialFrameWidth: 1000,
+        initialFrameHeight: 300,
+        serverUrl: 'file/upload'
+    });
 
     //向富文本中赋值
     $(function () {

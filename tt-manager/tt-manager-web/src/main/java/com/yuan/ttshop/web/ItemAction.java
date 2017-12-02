@@ -38,41 +38,42 @@ public class ItemAction {
         return result;
 
     }
-
+    //删除商品
     @ResponseBody
     @RequestMapping(value = "/items/delete", method = RequestMethod.POST)
     public int deleteItemsById(@RequestParam("ids[]") List<Long> ids) {
         int data = itemService.deleteItems(ids);
         return data;
     }
-
+    //下架
     @ResponseBody
     @RequestMapping(value = "/items/putaway", method = RequestMethod.POST)
     public int putAwayItems(@RequestParam("ids[]") List<Long> ids) {
         int data = itemService.putAwayItems(ids);
         return data;
     }
-
+    //上架
     @ResponseBody
     @RequestMapping(value = "/items/soldout", method = RequestMethod.POST)
     public int soldOutItems(@RequestParam("ids[]") List<Long> ids) {
         int data = itemService.soldOutItems(ids);
         return data;
     }
-
+    //保存商品
     @ResponseBody
     @RequestMapping(value = "/item",method = RequestMethod.POST)
     public int saveItem(TbItem item,String content,String paramData){
         int i=itemService.saveItem(item,content,paramData);
         return i;
     }
-
+    //跳转编辑商品页面
     @RequestMapping("/itemEdit")
     public String itemEdit(@RequestParam("cid") Long cid, HttpServletRequest request){
         TbItemCustom itemCustom=itemService.findById(cid);
         request.getSession().setAttribute("item",itemCustom);
         return "item-edit";
     }
+    //编辑商品
     @ResponseBody
     @RequestMapping("/item/edit")
     public int updateItem(TbItem item,String content,String paramData){
